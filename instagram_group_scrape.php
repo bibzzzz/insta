@@ -1,8 +1,9 @@
 <?php
 
 //Supply a username
-$accounts = array("wessavedlatin","bibzzzz"); 
-mkdir('/Users/amydonaldson/Documents/Habib/dev/instagram/group_analysis', 0755, true);
+$accounts = array("wessavedlatin","bibzzzz","amydgram"); 
+$current_dir = getcwd();
+mkdir($current_dir.'/group_analysis', 0755, true);
 
 //returns a big old hunk of JSON from a non-private IG account page.
 function scrape_insta($username) {
@@ -68,9 +69,9 @@ for($j = 0, $size_a = $user_count; $j < $size_a; ++$j) {
     $photo_count = count($results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes']);
     for($i = 0, $size = $photo_count; $i < $size; ++$i) {
         $collection[$i] = $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'];
-        copy($results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'], '/Users/amydonaldson/Documents/Habib/dev/instagram/group_analysis/img_collection_'.$i.'_'.$accounts[$j].'.jpg');
+        copy($results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'], $current_dir.'/group_analysis/img_collection_'.$i.'_'.$accounts[$j].'.jpg');
         echo $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'];
-        pixelate('/Users/amydonaldson/Documents/Habib/dev/instagram/group_analysis/img_collection_'.$i.'_'.$accounts[$j].'.jpg', '/Users/amydonaldson/Documents/Habib/dev/instagram/group_analysis/img_collection_'.$i.'_'.$accounts[$j]);
+        pixelate($current_dir.'/group_analysis/img_collection_'.$i.'_'.$accounts[$j].'.jpg', '/Users/amydonaldson/Documents/Habib/dev/instagram/group_analysis/img_collection_'.$i.'_'.$accounts[$j]);
         echo "\r\n";
     }
 }

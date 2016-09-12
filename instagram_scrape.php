@@ -1,7 +1,7 @@
 <?php
 
 //Supply a username
-$accounts = 'ellenmunro';
+$accounts = 'bibzzzz';
 // mkdir('/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts, 0755, true);
 $current_dir = getcwd();
 

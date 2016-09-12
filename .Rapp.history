@@ -1,0 +1,5 @@
+current_dir <- dirname(sys.frame(1)$ofile)
+current_dir <- dirname(sys.frames(1)$ofile)
+get_wd()
+wd()
+getwd()
