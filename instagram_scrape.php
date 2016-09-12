@@ -1,13 +1,15 @@
 <?php
 
 //Supply a username
-$accounts = 'snoop';
+$accounts = 'ellenmunro';
 // mkdir('/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts, 0755, true);
+$current_dir = getcwd();
 
+echo $current_dir;
 // echo '/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts ;
     
-if (!file_exists('/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts.'/')) {
-    mkdir('/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts.'/', 0777, true);
+if (!file_exists($current_dir.'/'.$accounts.'/')) {
+    mkdir($current_dir.'/'.$accounts.'/', 0777, true);
 }
 
 //returns a big old hunk of JSON from a non-private IG account page.
@@ -75,9 +77,9 @@ $photo_count = count($results_array['entry_data']['ProfilePage'][0]['user']['med
 
 for($i = 0, $size = $photo_count; $i < $size; ++$i) {
     $collection[$i] = $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'];
-    copy($results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'], '/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts.'/img_collection_'.$i.'.jpg');
+    copy($results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'], $current_dir.'/'.$accounts.'/img_collection_'.$i.'.jpg');
     echo $results_array['entry_data']['ProfilePage'][0]['user']['media']['nodes'][$i]['display_src'];
-    pixelate('/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts.'/img_collection_'.$i.'.jpg', '/Users/amydonaldson/Documents/Habib/dev/instagram/'.$accounts.'/img_collection_'.$i);
+    pixelate($current_dir.'/'.$accounts.'/img_collection_'.$i.'.jpg', $current_dir.'/'.$accounts.'/img_collection_'.$i);
     echo "\r\n";
 }
 
